@@ -27,7 +27,7 @@ y = y1+y2+y3
 
 plt.scatter(x,y,color='black')    #未分类
            
-kind_x = [0.3,0.4,0.5]      #初始n个点即分三类
+kind_x = [0.3,0.4,0.5]      #初始n个点即分n类
 kind_y = [0.3,0.4,0.5]
 
 kind_color = ["red","green","blue"]
@@ -38,7 +38,7 @@ for _ in range(0,train_times):
     dic = {}
     label = []
     for idx in range(0,len(x)):
-        long = 10           #距离
+        long = 10           #设置一个初始远距离
         l = -1              #初始分类标签
         for kindex in range(0,len(kind_x)):     #kindex 初始分类点的索引和分类标签
             distants = pow(x[idx]-kind_x[kindex],2)+pow(y[idx]-kind_y[kindex],2)
@@ -54,7 +54,6 @@ for _ in range(0,train_times):
             dic[l] = [x[idx],y[idx],1]
     for key in dic:
         kind_x[key],kind_y[key] = dic[key][0]/dic[key][2],dic[key][1]/dic[key][2]
-        #print('画图前计算出新点类型与值',key," ",kind_x,kind_y)
     colors = [kind_color[num] for num in label]
     plt.scatter(x,y,color=colors)
     plt.scatter(kind_x,kind_y,color=kind_color,s=200)
