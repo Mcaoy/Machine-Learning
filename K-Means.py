@@ -12,7 +12,7 @@ vari = 0.2
 xlnum = 100
 train_times = 20
 
-rand = Random()
+rand = random.Random()
 
 x1 = [rand.normalvariate(1,vari) for _ in range(0,xlnum)]
 x2 = [rand.normalvariate(2,vari) for _ in range(0,xlnum)]
@@ -38,9 +38,9 @@ for _ in range(0,train_times):
     dic = {}
     label = []
     for idx in range(0,len(x)):
-        long = 10           #设置一个初始远距离
+        long = pow(x[idx]-kind_x[0],2)+pow(y[idx]-kind_y[0],2)           #设置一个初始远距离
         l = -1              #初始分类标签
-        for kindex in range(0,len(kind_x)):     #kindex 初始分类点的索引和分类标签
+        for kindex in range(1,len(kind_x)):     #kindex 初始分类点的索引和分类标签
             distants = pow(x[idx]-kind_x[kindex],2)+pow(y[idx]-kind_y[kindex],2)
             if distants < long:
                 l = kindex
